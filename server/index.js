@@ -1,17 +1,17 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import postRoutes from './routes/posts.js'
+import postRoutes from "./routes/posts.jss";
 
 const app = express();
-
-//Routes
-app.use('/posts',postRoutes)
 
 //Middlewares
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+
+//Routes
+app.use("/posts", postRoutes);
 
 const CONNECTION_URL =
   "mongodb+srv://lumas147:lumas89@lumas89.y8ptm.mongodb.net/<dbname>?retryWrites=true&w=majority";
