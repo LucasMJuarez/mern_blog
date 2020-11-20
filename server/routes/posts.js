@@ -1,4 +1,4 @@
-import express from 'express'   ;
+import express from 'express';
 import {getPosts, createPosts} from '../controllers/posts.controllers.js'
 
 const router = express.Router()

@@ -1,23 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
-import FileBase from "react-file-base64";
+import { useDispatch } from "react-redux";
+import FileBase64 from "react-file-base64";
 import useStyles from "./styles";
+import { createPost } from "../../actions/posts";
+
 const Form = () => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
     message: "",
     tags: "",
-    selectedFile: "",
+    selectedFile: ""
   });
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const handleSubmit = (e) => {
+
+/*   useEffect(() => {
+    if(post) {
+      setPostData(post)
+    }
+  }, [post]) */
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(createPost(postData));
+    //clear();
   };
 
-  const clear = () => {
-
-  }
+const clear = () => {
+/*     setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: ""
+    }); */
+  }; 
 
   return (
     <Paper className={classes.paper}>
@@ -59,23 +78,23 @@ const Form = () => {
         <TextField
           name="tags"
           variant="outlined"
-          label="Tags"
+          label="Tags (coma separadora)"
           fullWidth
           value={postData.tags}
           onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
         />
-        <div className={classes.fileInput}>
-          <FileBase
+      <div className={classes.fileInput}>
+          <FileBase64
             type="file"
             multiple={false}
             onDone={({ base64 }) =>
               setPostData({ ...postData, selectedFile: base64 })
             }
           />
-        </div>
+        </div> 
         <Button
-          classname={classes.buttonSubmit}
-          variant="container"
+          className={classes.buttonSubmit}
+          variant="contained"
           color="primary"
           size="large"
           type="submit"
