@@ -18,11 +18,10 @@ app.use(express.urlencoded({ limit:'30mb', extended: true }));
 //Routes
 app.use("/posts", postRoutes);
 
-const CONNECTION_URL = "mongodb+srv://lumas147:lumas89@lumas89.y8ptm.mongodb.net/<dbname>?retryWrites=true&w=majority"
 const PORT = process.env.PORT || 5000;
 
 mongoose
-  .connect(CONNECTION_URL, {
+  .connect(proce.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex:true
