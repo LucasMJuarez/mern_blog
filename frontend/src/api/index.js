@@ -2,6 +2,10 @@ import axios from "axios";
 
 const url = "http://localhost:5000/posts";
 
+//deployed 
+//const url = "https://recuerdolumas-mern.herokuapp.com/posts";
+
+
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);
 export const updatePost = (id, updatedPost) =>

@@ -18,10 +18,15 @@ app.use(express.urlencoded({ limit:'30mb', extended: true }));
 //Routes
 app.use("/posts", postRoutes);
 
+//Para prueba de Deployed
+app.get("/", (req, res) => {
+  res.send("Hello to Recuerdos API");
+});
+
 const PORT = process.env.PORT || 5000;
 
 mongoose
-  .connect(proce.env.CONNECTION_URL, {
+  .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex:true
